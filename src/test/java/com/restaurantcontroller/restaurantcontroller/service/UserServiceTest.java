@@ -45,6 +45,10 @@ public class UserServiceTest {
     @InjectMocks
     private UserService userService;
 
+    private final String RANDOM_USERNAME = "randomUser";
+    private final String RANDOM_PASSWORD = "randomPassword";
+
+
     @Test
     void createUser_shouldThrowException_whenUserDTOIsNull() {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
@@ -56,6 +60,7 @@ public class UserServiceTest {
     @Test
     void createUser_shouldThrowException_whenEmailIsNull() {
         NewUserDTO dto = new NewUserDTO();
+        dto.setCredentials(createUserCredentialsDTO(RANDOM_USERNAME, RANDOM_PASSWORD));
         dto.setEmail(null);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
@@ -67,6 +72,7 @@ public class UserServiceTest {
     void createUser_shouldThrowException_whenEmailIsEmpty() {
         NewUserDTO dto = new NewUserDTO();
         dto.setEmail("   ");
+        dto.setCredentials(createUserCredentialsDTO(RANDOM_USERNAME, RANDOM_PASSWORD));
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> userService.createUser(dto));
@@ -77,6 +83,7 @@ public class UserServiceTest {
     void createUser_shouldThrowException_whenUserIdentificationIsNull() {
         NewUserDTO dto = new NewUserDTO();
         dto.setEmail("test@example.com");
+        dto.setCredentials(createUserCredentialsDTO(RANDOM_USERNAME, RANDOM_PASSWORD));
         dto.setUserIdentification(null);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
@@ -89,6 +96,7 @@ public class UserServiceTest {
         NewUserDTO dto = new NewUserDTO();
         dto.setEmail("test@example.com");
         dto.setUserIdentification("123456789");
+        dto.setCredentials(createUserCredentialsDTO(RANDOM_USERNAME, RANDOM_PASSWORD));
         dto.setName(null);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
@@ -102,6 +110,7 @@ public class UserServiceTest {
         dto.setEmail("existing@example.com");
         dto.setUserIdentification("123456789");
         dto.setName("John Doe");
+        dto.setCredentials(createUserCredentialsDTO(RANDOM_USERNAME, RANDOM_PASSWORD));
 
         when(userRepository.existsByEmail(dto.getEmail())).thenReturn(true);
 
@@ -116,6 +125,7 @@ public class UserServiceTest {
         dto.setEmail("test@example.com");
         dto.setUserIdentification("123456789");
         dto.setName("John Doe");
+        dto.setCredentials(createUserCredentialsDTO(RANDOM_USERNAME, RANDOM_PASSWORD));
 
         when(userRepository.existsByEmail(dto.getEmail())).thenReturn(false);
         when(userRepository.existsByUserIdentification(dto.getUserIdentification())).thenReturn(true);
@@ -131,9 +141,6 @@ public class UserServiceTest {
         dto.setUserIdentification("123456789");
         dto.setName("John Doe");
         dto.setCredentials(null);
-
-        when(userRepository.existsByEmail(dto.getEmail())).thenReturn(false);
-        when(userRepository.existsByUserIdentification(dto.getUserIdentification())).thenReturn(false);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> userService.createUser(dto));
@@ -152,7 +159,6 @@ public class UserServiceTest {
         dto.setCredentials(credentialsDTO);
 
         when(userRepository.existsByEmail(dto.getEmail())).thenReturn(false);
-        when(userRepository.existsByUserIdentification(dto.getUserIdentification())).thenReturn(false);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> userService.createUser(dto));
@@ -171,7 +177,6 @@ public class UserServiceTest {
         dto.setCredentials(credentialsDTO);
 
         when(userRepository.existsByEmail(dto.getEmail())).thenReturn(false);
-        when(userRepository.existsByUserIdentification(dto.getUserIdentification())).thenReturn(false);
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> userService.createUser(dto));
@@ -180,6 +185,8 @@ public class UserServiceTest {
 
     @Test
     void createUser_shouldCreateUserSuccessfully() {
+        String username = "johndoe";
+
         NewUserDTO dto = new NewUserDTO();
         dto.setEmail("test@example.com");
         dto.setUserIdentification("123456789");
@@ -187,7 +194,7 @@ public class UserServiceTest {
         dto.setProfile(EProfile.client);
 
         UserCredentialsDTO credentialsDTO = new UserCredentialsDTO();
-        credentialsDTO.setUsername("johndoe");
+        credentialsDTO.setUsername(username);
         credentialsDTO.setPassword("password123");
         dto.setCredentials(credentialsDTO);
 
@@ -201,6 +208,7 @@ public class UserServiceTest {
 
         when(userRepository.existsByEmail(dto.getEmail())).thenReturn(false);
         when(userRepository.existsByUserIdentification(dto.getUserIdentification())).thenReturn(false);
+        when(userRepository.existsByUserCredentials_Username(username)).thenReturn(false);
         when(addressMapper.toAddress(addressDTO)).thenReturn(address);
         when(passwordEncoder.encode("password123")).thenReturn("encodedPassword");
         when(userMapper.createUser(dto)).thenReturn(user);
@@ -334,7 +342,7 @@ public class UserServiceTest {
 
         RuntimeException exception = assertThrows(RuntimeException.class,
                 () -> userService.updateUser(id, dto));
-        assertEquals("Erro interno ao atualizar usuário: Usuário não encontrado", exception.getMessage());
+        assertEquals("Usuário não encontrado", exception.getMessage());
         verify(userRepository).findById(id);
     }
 
@@ -463,5 +471,12 @@ public class UserServiceTest {
         verify(userRepository).findById(id);
         verify(userRepository).deleteById(id);
         verify(userMapper).toResponseNewUserDTO(user);
+    }
+
+    private UserCredentialsDTO createUserCredentialsDTO(String username, String password) {
+        UserCredentialsDTO credentialsDTO = new UserCredentialsDTO();
+        credentialsDTO.setUsername(username);
+        credentialsDTO.setPassword(password);
+        return credentialsDTO;
     }
 }

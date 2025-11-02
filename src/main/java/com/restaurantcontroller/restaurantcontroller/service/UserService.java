@@ -55,6 +55,10 @@ public class UserService {
         if (newUserDTO == null)
             throw new IllegalArgumentException("Dados do usuário não podem ser nulos");
 
+        if (newUserDTO.getCredentials() == null) {
+            throw new IllegalArgumentException("Credenciais são obrigatórias");
+        }
+
         if (newUserDTO.getEmail() == null || newUserDTO.getEmail().trim().isEmpty())
             throw new IllegalArgumentException("Email é obrigatório");
 
@@ -65,11 +69,12 @@ public class UserService {
         if (newUserDTO.getName() == null || newUserDTO.getName().trim().isEmpty())
             throw new IllegalArgumentException("Nome é obrigatório");
 
-        // Verificar se o email já existe
         if (userRepository.existsByEmail(newUserDTO.getEmail()))
             throw new EmailAlreadyExistsException(newUserDTO.getEmail());
 
-        // Verificar se o username do usuário já existe
+        if (userRepository.existsByUserIdentification(newUserDTO.getUserIdentification()))
+            throw new UserIdentificationAlreadyExistsException(newUserDTO.getUserIdentification());
+
         if (userRepository.existsByUserCredentials_Username(newUserDTO.getCredentials().getUsername()))
             throw new UsernameAlreadyExistsException(newUserDTO.getCredentials().getUsername());
 
@@ -87,21 +92,14 @@ public class UserService {
         UserCredentials userCredentials = new UserCredentials();
         UserCredentialsDTO credentialsDTO = newUserDTO.getCredentials();
 
-        if (credentialsDTO != null) {
-            if (credentialsDTO.getUsername() == null || credentialsDTO.getUsername().trim().isEmpty())
-                throw new IllegalArgumentException("Username é obrigatório");
+        if (credentialsDTO.getUsername() == null || credentialsDTO.getUsername().trim().isEmpty())
+            throw new IllegalArgumentException("Username é obrigatório");
 
-            if (credentialsDTO.getPassword() == null || credentialsDTO.getPassword().trim().isEmpty())
-                throw new IllegalArgumentException("Senha é obrigatória");
+        if (credentialsDTO.getPassword() == null || credentialsDTO.getPassword().trim().isEmpty())
+            throw new IllegalArgumentException("Senha é obrigatória");
 
-            userCredentials.setUsername(credentialsDTO.getUsername());
-            // Criptografar a senha
-            userCredentials.setPassword(passwordEncoder.encode(credentialsDTO.getPassword()));
-
-        } else {
-            throw new IllegalArgumentException("Credenciais são obrigatórias");
-        }
-
+        userCredentials.setUsername(credentialsDTO.getUsername());
+        userCredentials.setPassword(passwordEncoder.encode(credentialsDTO.getPassword()));
         userCredentials.setLastUpdate(ZonedDateTime.now());
 
         // Criar o usuário usando o mapper
