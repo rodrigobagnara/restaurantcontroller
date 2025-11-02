@@ -22,6 +22,20 @@ public class GlobalExceptionHandler {
         return problem;
     }
 
+    @ExceptionHandler(UsernameAlreadyExistsException.class)
+    public ProblemDetail handleUsernameAlreadyExists(UsernameAlreadyExistsException ex) {
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, ex.getMessage());
+        problem.setTitle("Username já está em uso");
+        return problem;
+    }
+
+    @ExceptionHandler(UserIdentificationAlreadyExistsException.class)
+    public ProblemDetail handleUserIdentificationAlreadyExists(UserIdentificationAlreadyExistsException ex) {
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.CONFLICT, ex.getMessage());
+        problem.setTitle("Identificação do usuário já está em uso");
+        return problem;
+    }
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ProblemDetail handleIllegalArgumentException(IllegalArgumentException ex) {
         ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, ex.getMessage());
