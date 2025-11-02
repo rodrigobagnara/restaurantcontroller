@@ -1,0 +1,29 @@
+# Define each service in the application
+services:
+
+  # Database service using PostgresSQL
+  postgres:
+    # Official Postgres image from Docker Hub
+    image: postgres:17
+
+    # Personalized name for better identification
+    container_name: restaurant_postgres_db
+
+    # Environment variables for database configuration
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-restaurant_db}
+
+    # Port mapping to access the database from the host
+    ports:
+      - "5432:5432"
+
+    # Volume to persist database data
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      # Initialize the database with schema creation script
+      - ./src/main/java/com/restaurantcontroller/restaurantcontroller/migration/init-schema.sql:/docker-entrypoint-initdb.d/init-schema.sql
+
+volumes:
+  postgres_data:

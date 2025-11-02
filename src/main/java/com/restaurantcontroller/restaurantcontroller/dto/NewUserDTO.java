@@ -1,7 +1,6 @@
 package com.restaurantcontroller.restaurantcontroller.dto;
 
 import com.restaurantcontroller.restaurantcontroller.model.EProfile;
-import com.restaurantcontroller.restaurantcontroller.validation.UniqueEmail;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
@@ -25,7 +24,6 @@ public class NewUserDTO {
     @NotBlank(message = "Email não pode ser nulo ou vazio")
     @Email(message = "Email deve ter um formato válido")
     @Size(max = 100, message = "Email não pode exceder 100 caracteres")
-    @UniqueEmail(message = "Email já está em uso")
     private String email;
     
     @NotNull(message = "Perfil não pode ser nulo")
