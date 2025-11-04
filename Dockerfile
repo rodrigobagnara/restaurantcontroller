@@ -8,7 +8,7 @@ COPY src ./src
 
 RUN mvn package -DskipTests
 
-FROM eclipse-temurin:21-jre-jammy
+FROM paketobuildpacks/run-java-21-ubi8-base:latest
 
 WORKDIR /app
 
