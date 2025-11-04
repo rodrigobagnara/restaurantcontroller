@@ -126,4 +126,8 @@ A API utiliza autenticação baseada em credenciais armazenadas no banco de dado
 
 ## 📬 Coleção de requisições Postman
 
-TODO -> Apontar para a coleção do Postman que será criada em breve.
+A coleção de requisições para testar todos os endpoints da API está disponível no arquivo:
+
+**TECH CHALLENGE - restaurantcontroller API.postman_collection.json**
+
+Você pode importar esse arquivo diretamente no Postman para facilitar os testes e a exploração da API.
