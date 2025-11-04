@@ -41,9 +41,11 @@ public class SecurityConfig {
                     "/swagger-ui/**",
                     "/swagger-ui.html",
                     "/swagger-resources/**",
-                    "/webjars/**"
+                    "/webjars/**",
+                        "/credentials/**",
+                        "/addresses/**",
+                        "/users/**"
                 ).permitAll()
-                    .requestMatchers(HttpMethod.POST, "/users").permitAll()
                 .anyRequest().authenticated()
             )
             .httpBasic(Customizer.withDefaults())
