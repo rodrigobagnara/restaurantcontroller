@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 @Service
 public class UserCredentialsService {
@@ -98,7 +99,17 @@ public class UserCredentialsService {
         }
     }
 
+    /**
+     * Encontra as credenciais de um usuário pelo username
+     * @param username O username do usuário
+     * @return Um Optional contendo as credenciais do usuário, se encontradas
+     */
+    public Optional<UserCredentials> findByUsername(String username) {
+        if (username == null || username.trim().isEmpty()) {
+            return Optional.empty();
+        }
+        return userCredentialsRepository.findByUsername(username.trim());
+    }
+
 
 }
-
-
