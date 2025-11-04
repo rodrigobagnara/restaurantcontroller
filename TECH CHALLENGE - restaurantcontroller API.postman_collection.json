@@ -1,0 +1,436 @@
+{
+	"info": {
+		"_postman_id": "3b20dbd1-cb60-4878-8b4c-a9a369383ab7",
+		"name": "TECH CHALLENGE - restaurantcontroller API",
+		"description": "#### **Discentes:**\n\n- Rodrigo Antonio Bagnara\n    \n- Carlos Eduardo Ferreira Lins\n    \n- Júlio Gurgel Fontes\n    \n- Mayk Pintor Platero\n    \n- João Victor Morito da Silva\n    \n\n#### **Acesso Swagger:**\n\n- API Documentation (JSON): [http://localhost:8080/api/v3/api-docs](http://localhost:8080/api/v3/api-docs)\n    \n- Swagger UI: [http://localhost:8080/api/swagger-ui.html](http://localhost:8080/api/swagger-ui.html) ou [http://localhost:8080/api/swagger-ui/index.html](http://localhost:8080/api/swagger-ui/index.htm)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48754636",
+		"_collection_link": "https://maykplatero-613318.postman.co/workspace/Mayk-Platero's-Workspace~63053521-3946-4c94-8c1a-80defd57c88f/collection/48754636-3b20dbd1-cb60-4878-8b4c-a9a369383ab7?action=share&source=collection_link&creator=48754636"
+	},
+	"item": [
+		{
+			"name": "1.1. Test Ping Application",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "JSESSIONID=66710EE316CB46C52B2500E67F14AC32"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"ping"
+					]
+				},
+				"description": "Generated from cURL: curl --location 'http://localhost:8080/api/ping' \\\r\n--header 'Cookie: JSESSIONID=66710EE316CB46C52B2500E67F14AC32'"
+			},
+			"response": []
+		},
+		{
+			"name": "2.1.1. Insert New User (1)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rodrigo Bagnara\",\r\n    \"userIdentification\": \"08538968955\",\r\n    \"email\": \"rodrigo.bagnara@gmail.com\",\r\n    \"profile\": \"owner\",\r\n    \"address\": {\r\n      \"street\": \"Avenida Paulista\",\r\n      \"number\": 1000,\r\n      \"complement\": \"Sala 200\",\r\n      \"neighborhood\": \"Bela Vista\",\r\n      \"city\": \"São Paulo\",\r\n      \"state\": \"São Paulo\",\r\n      \"country\": \"Brasil\",\r\n      \"cep\": \"01310-100\"\r\n    },\r\n    \"credentials\": {\r\n      \"username\": \"rodrigo#2025\",\r\n      \"password\": \"Restaurante@2025\"\r\n    }\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Generated from cURL: curl --location 'http://localhost:8080/api/users' \\\r\n--header 'Content-Type: application/json' \\\r\n--data-raw '{\r\n    \"name\": \"Maria Oliveira Costa\",\r\n    \"userIdentification\": \"08538968955\",\r\n    \"email\": \"maria.oliveira@restaurante.com\",\r\n    \"profile\": \"owner\",\r\n    \"address\": {\r\n      \"street\": \"Avenida Paulista\",\r\n      \"number\": 1000,\r\n      \"complement\": \"Sala 200\",\r\n      \"neighborhood\": \"Bela Vista\",\r\n      \"city\": \"São Paulo\",\r\n      \"state\": \"São Paulo\",\r\n      \"country\": \"Brasil\",\r\n      \"cep\": \"01310-100\"\r\n    },\r\n    \"credentials\": {\r\n      \"username\": \"Maria.oliveira.05\",\r\n      \"password\": \"Restaurante@2024\"\r\n    }\r\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "2.1.2. Insert New User (2)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Gabriel Decolas\",\r\n    \"userIdentification\": \"54268265\",\r\n    \"email\": \"gabriel.decolas@gmail.com\",\r\n    \"profile\": \"employee\",\r\n    \"address\": {\r\n      \"street\": \"Rua Fernando Costa\",\r\n      \"number\": 246,\r\n      \"complement\": \"casa\",\r\n      \"neighborhood\": \"Barra Funda\",\r\n      \"city\": \"Vinhedo\",\r\n      \"state\": \"São Paulo\",\r\n      \"country\": \"Brasil\",\r\n      \"cep\": \"10951-001\"\r\n    },\r\n    \"credentials\": {\r\n      \"username\": \"gabriel#2025\",\r\n      \"password\": \"Restaurante@2025\"\r\n    }\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Generated from cURL: curl --location 'http://localhost:8080/api/users' \\\r\n--header 'Content-Type: application/json' \\\r\n--data-raw '{\r\n    \"name\": \"Maria Oliveira Costa\",\r\n    \"userIdentification\": \"08538968955\",\r\n    \"email\": \"maria.oliveira@restaurante.com\",\r\n    \"profile\": \"owner\",\r\n    \"address\": {\r\n      \"street\": \"Avenida Paulista\",\r\n      \"number\": 1000,\r\n      \"complement\": \"Sala 200\",\r\n      \"neighborhood\": \"Bela Vista\",\r\n      \"city\": \"São Paulo\",\r\n      \"state\": \"São Paulo\",\r\n      \"country\": \"Brasil\",\r\n      \"cep\": \"01310-100\"\r\n    },\r\n    \"credentials\": {\r\n      \"username\": \"Maria.oliveira.05\",\r\n      \"password\": \"Restaurante@2024\"\r\n    }\r\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "2.1.3. Insert New User (3)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Fabio Ieiri\",\r\n    \"userIdentification\": \"47378913049\",\r\n    \"email\": \"fabio.ieiri@gmail.com\",\r\n    \"profile\": \"client\",\r\n    \"address\": {\r\n      \"street\": \"Rua dos Bandeirantes\",\r\n      \"number\": 320,\r\n      \"complement\": \"Apto 604\",\r\n      \"neighborhood\": \"Centro\",\r\n      \"city\": \"Mauá\",\r\n      \"state\": \"São Paulo\",\r\n      \"country\": \"Brasil\",\r\n      \"cep\": \"09310-360\"\r\n    },\r\n    \"credentials\": {\r\n      \"username\": \"rodrigo#2025\",\r\n      \"password\": \"Restaurante@2025\"\r\n    }\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Generated from cURL: curl --location 'http://localhost:8080/api/users' \\\r\n--header 'Content-Type: application/json' \\\r\n--data-raw '{\r\n    \"name\": \"Maria Oliveira Costa\",\r\n    \"userIdentification\": \"08538968955\",\r\n    \"email\": \"maria.oliveira@restaurante.com\",\r\n    \"profile\": \"owner\",\r\n    \"address\": {\r\n      \"street\": \"Avenida Paulista\",\r\n      \"number\": 1000,\r\n      \"complement\": \"Sala 200\",\r\n      \"neighborhood\": \"Bela Vista\",\r\n      \"city\": \"São Paulo\",\r\n      \"state\": \"São Paulo\",\r\n      \"country\": \"Brasil\",\r\n      \"cep\": \"01310-100\"\r\n    },\r\n    \"credentials\": {\r\n      \"username\": \"Maria.oliveira.05\",\r\n      \"password\": \"Restaurante@2024\"\r\n    }\r\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "2.1.4. Insert New User with email error (4)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"João Doria\",\r\n    \"userIdentification\": \"47378913099\",\r\n    \"email\": \"fabio.ieiri@gmail.com\",\r\n    \"profile\": \"client\",\r\n    \"address\": {\r\n      \"street\": \"Rua dos Perdizes\",\r\n      \"number\": 320,\r\n      \"complement\": \"Apto 10\",\r\n      \"neighborhood\": \"Centro\",\r\n      \"city\": \"Sorocaba\",\r\n      \"state\": \"São Paulo\",\r\n      \"country\": \"Brasil\",\r\n      \"cep\": \"09310-999\"\r\n    },\r\n    \"credentials\": {\r\n      \"username\": \"fabio#2025\",\r\n      \"password\": \"fabio@2025\"\r\n    }\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Generated from cURL: curl --location 'http://localhost:8080/api/users' \\\r\n--header 'Content-Type: application/json' \\\r\n--data-raw '{\r\n    \"name\": \"Maria Oliveira Costa\",\r\n    \"userIdentification\": \"08538968955\",\r\n    \"email\": \"maria.oliveira@restaurante.com\",\r\n    \"profile\": \"owner\",\r\n    \"address\": {\r\n      \"street\": \"Avenida Paulista\",\r\n      \"number\": 1000,\r\n      \"complement\": \"Sala 200\",\r\n      \"neighborhood\": \"Bela Vista\",\r\n      \"city\": \"São Paulo\",\r\n      \"state\": \"São Paulo\",\r\n      \"country\": \"Brasil\",\r\n      \"cep\": \"01310-100\"\r\n    },\r\n    \"credentials\": {\r\n      \"username\": \"Maria.oliveira.05\",\r\n      \"password\": \"Restaurante@2024\"\r\n    }\r\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "2.2.1. Get Users List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Generated from cURL: curl --location 'http://localhost:8080/api/users'"
+			},
+			"response": []
+		},
+		{
+			"name": "2.2.2. Get User ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"5"
+					]
+				},
+				"description": "Generated from cURL: curl --location 'http://localhost:8080/api/users/5'"
+			},
+			"response": []
+		},
+		{
+			"name": "2.3 Put Users",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"Fabio Ieiri\",\r\n        \"userIdentification\": \"47378913049\",\r\n        \"email\": \"fabio.ieiri@gmail.com\",\r\n        \"username\": \"rodrigo@2025\",\r\n        \"profile\": \"client\",\r\n        \"address\": {\r\n            \"street\": \"Avenida dos Estados\",\r\n            \"number\": 320,\r\n            \"complement\": \"Apto 604\",\r\n            \"neighborhood\": \"Centro\",\r\n            \"city\": \"Mauá\",\r\n            \"state\": \"São Paulo\",\r\n            \"country\": \"Brasil\",\r\n            \"cep\": \"09310-360\"\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.4. Dele User ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/users/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"5"
+					]
+				},
+				"description": "Generated from cURL: curl --location 'http://localhost:8080/api/users/5'"
+			},
+			"response": []
+		},
+		{
+			"name": "3.1. Get User Address",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/addresses/user/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"addresses",
+						"user",
+						"4"
+					]
+				},
+				"description": "Generated from cURL: curl --location 'http://localhost:8080/api/addresses/user/4'"
+			},
+			"response": []
+		},
+		{
+			"name": "3.2. Alter User Address",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"street\": \"Rua Rio Grande\",\r\n    \"number\": 1020,\r\n    \"complement\": \"Apto 3\",\r\n    \"neighborhood\": \"Homero Thon\",\r\n    \"city\": \"Santo André\",\r\n    \"state\": \"São Paulo\",\r\n    \"country\": \"Brasil\",\r\n    \"cep\": \"09195-360\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/addresses/user/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"addresses",
+						"user",
+						"4"
+					]
+				},
+				"description": "Generated from cURL: curl --location --request PUT 'http://localhost:8080/api/addresses/user/4' \\\r\n--header 'Content-Type: application/json' \\\r\n--data '{\r\n    \"street\": \"Rua Uruguaiana\",\r\n    \"number\": 1020,\r\n    \"complement\": \"Apto 15\",\r\n    \"neighborhood\": \"Rudgi Ramos\",\r\n    \"city\": \"São Bernardo do Campo\",\r\n    \"state\": \"São Paulo\",\r\n    \"country\": \"Brasil\",\r\n    \"cep\": \"09195-360\"\r\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "4.1. Alter User Username",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\": \"Abacate#2025\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/credentials/7/username",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"credentials",
+						"7",
+						"username"
+					]
+				},
+				"description": "Generated from cURL: curl --location --request PUT 'http://localhost:8080/api/credentials/7/username' \\\n--header 'Content-Type: application/json' \\\n--data '{ \"username\": \"Abacate#2025\" }'"
+			},
+			"response": []
+		},
+		{
+			"name": "4.2. Alter User Passworld",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"password\": \"Abacate#2025\" }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/credentials/7/password",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"credentials",
+						"7",
+						"password"
+					]
+				},
+				"description": "Generated from cURL: curl --location --request PUT '[http://localhost:8080/api/credentials/7/password'](http://localhost:8080/api/credentials/7/password')  \n\\--header 'Content-Type: application/json'  \n\\--data '{ \"password\": \"Abacate#2025\" }'"
+			},
+			"response": []
+		},
+		{
+			"name": "5.1. Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"Abacate#2025\",\r\n  \"password\": \"Abacate#2025\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
