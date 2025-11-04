@@ -75,7 +75,21 @@ Isso iniciará:
 
 ## 🔧 Variáveis de Ambiente
 
-TODO -> Será feito a partir do docker-compose.yml
+As principais variáveis de ambiente utilizadas na aplicação estão configuradas no arquivo `docker-compose.yml` e são essenciais para o funcionamento correto do banco de dados e da aplicação Spring Boot.
+
+### Serviço `db` (PostgreSQL)
+- `POSTGRES_DB`: Nome do banco de dados (padrão: `restaurant_db`)
+- `POSTGRES_USER`: Usuário do banco de dados (padrão: `postgres`)
+- `POSTGRES_PASSWORD`: Senha do banco de dados (padrão: `postgres`)
+
+### Serviço `app` (Spring Boot)
+- `SPRING_DATASOURCE_URL`: URL de conexão com o banco de dados (padrão: `jdbc:postgresql://db:5432/restaurant_db`)
+- `SPRING_DATASOURCE_USERNAME`: Usuário do banco de dados (padrão: `postgres`)
+- `SPRING_DATASOURCE_PASSWORD`: Senha do banco de dados (padrão: `postgres`)
+- `SPRING_JPA_HIBERNATE_DDL_AUTO`: Estratégia de atualização do schema (padrão: `update`)
+- `SPRING_FLYWAY_SCHEMAS`: Schema utilizado pelo Flyway (padrão: `fiap`)
+
+Essas variáveis podem ser customizadas conforme a necessidade do ambiente.
 
 ---
 
@@ -112,4 +126,8 @@ A API utiliza autenticação baseada em credenciais armazenadas no banco de dado
 
 ## 📬 Coleção de requisições Postman
 
-TODO -> Apontar para a coleção do Postman que será criada em breve.
+A coleção de requisições para testar todos os endpoints da API está disponível no arquivo:
+
+**TECH CHALLENGE - restaurantcontroller API.postman_collection.json**
+
+Você pode importar esse arquivo diretamente no Postman para facilitar os testes e a exploração da API.
