@@ -87,25 +87,6 @@ TODO -> Será feito a partir do docker-compose.yml
 
 ---
 
-## 🔒 Autenticação
-
-A API utiliza autenticação HTTP Basic baseada em credenciais armazenadas no banco de dados. Para cada requisição autenticada, o sistema verifica o usuário e senha informados no header Authorization contra a tabela `user_credentials` do banco de dados.
-
-- Por padrão, um usuário administrador é criado na inicialização do sistema:
-  - Usuário: `ADMIN`
-  - Senha: `ADMIN`
-- O provedor de autenticação (`CustomAuthenticationProvider`) foi implementado para validar as credenciais usando o Spring Security.
-- Endpoints públicos (como `/ping` e documentação Swagger) não exigem autenticação.
-- Para acessar endpoints protegidos, envie o header HTTP:
-
-```
-Authorization: Basic <base64(username:password)>
-```
-
-Caso as credenciais estejam incorretas, a API retorna HTTP 401 Unauthorized.
-
----
-
 ## 📬 Coleção de requisições Postman
 
 TODO -> Apontar para a coleção do Postman que será criada em breve.
