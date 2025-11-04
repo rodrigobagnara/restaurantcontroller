@@ -27,12 +27,11 @@ public class SecurityConfig {
     /**
      * Configura a cadeia de filtros de segurança
      * @param http HttpSecurity para configuração
-     * @param customAuthenticationProvider Custom provider for DB-based authentication
      * @return SecurityFilterChain configurado
      * @throws Exception se houver erro na configuração
      */
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, CustomAuthenticationProvider customAuthenticationProvider) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(authz -> authz
@@ -51,7 +50,6 @@ public class SecurityConfig {
             .formLogin(AbstractHttpConfigurer::disable)
             .sessionManagement(session -> session.sessionCreationPolicy(org.springframework.security.config.http.SessionCreationPolicy.STATELESS)
             );
-        http.authenticationProvider(customAuthenticationProvider);
         return http.build();
     }
 }
