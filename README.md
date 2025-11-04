@@ -87,22 +87,26 @@ TODO -> Será feito a partir do docker-compose.yml
 
 ---
 
-## 🔒 Autenticação
+## 🔒 Autenticação e Login
 
-A API utiliza autenticação HTTP Basic baseada em credenciais armazenadas no banco de dados. Para cada requisição autenticada, o sistema verifica o usuário e senha informados no header Authorization contra a tabela `user_credentials` do banco de dados.
+A API utiliza autenticação baseada em credenciais armazenadas no banco de dados. Para verificar se um usuário existe e se a senha está correta, utilize o endpoint de login:
 
-- Por padrão, um usuário administrador é criado na inicialização do sistema:
-  - Usuário: `ADMIN`
-  - Senha: `ADMIN`
-- O provedor de autenticação (`CustomAuthenticationProvider`) foi implementado para validar as credenciais usando o Spring Security.
-- Endpoints públicos (como `/ping` e documentação Swagger) não exigem autenticação.
-- Para acessar endpoints protegidos, envie o header HTTP:
+### Endpoint de Login
 
-```
-Authorization: Basic <base64(username:password)>
-```
+- **POST** `/credentials/login`
+- **Body:**
+  ```json
+  {
+    "username": "seuUsuario",
+    "password": "suaSenha"
+  }
+  ```
+- **Respostas:**
+  - `200 OK`: Login realizado com sucesso!
+  - `401 Unauthorized`: Credenciais inválidas
+  - `500 Internal Server Error`: Erro inesperado
 
-Caso as credenciais estejam incorretas, a API retorna HTTP 401 Unauthorized.
+> **Nota:** O login compara a senha informada com o hash armazenado usando BCrypt, garantindo segurança no processo de autenticação.
 
 ---
 
