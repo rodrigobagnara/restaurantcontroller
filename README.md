@@ -87,6 +87,29 @@ TODO -> Será feito a partir do docker-compose.yml
 
 ---
 
+## 🔒 Autenticação e Login
+
+A API utiliza autenticação baseada em credenciais armazenadas no banco de dados. Para verificar se um usuário existe e se a senha está correta, utilize o endpoint de login:
+
+### Endpoint de Login
+
+- **POST** `/credentials/login`
+- **Body:**
+  ```json
+  {
+    "username": "seuUsuario",
+    "password": "suaSenha"
+  }
+  ```
+- **Respostas:**
+  - `200 OK`: Login realizado com sucesso!
+  - `401 Unauthorized`: Credenciais inválidas
+  - `500 Internal Server Error`: Erro inesperado
+
+> **Nota:** O login compara a senha informada com o hash armazenado usando BCrypt, garantindo segurança no processo de autenticação.
+
+---
+
 ## 📬 Coleção de requisições Postman
 
 TODO -> Apontar para a coleção do Postman que será criada em breve.
