@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,7 +48,7 @@ public class GlobalExceptionHandler {
     public ProblemDetail handleValidationExceptions(MethodArgumentNotValidException ex) {
         System.err.println("Validation error occurred: " + ex.getMessage());
 
-        ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "Invalid data provided");
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "Dados de entrada inválidos");
         problem.setTitle("Erro de validação");
 
         Map<String, String> errors = new HashMap<>();
@@ -64,7 +65,10 @@ public class GlobalExceptionHandler {
     // Tratamento genérico para outras exceções
     @ExceptionHandler(Exception.class)
     public ProblemDetail handleRuntimeException(RuntimeException ex) {
-        ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        System.err.println("Unexpected error occurred: " + ex.getMessage());
+        System.err.println(Arrays.toString(ex.getStackTrace()));
+
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "Erro interno do servidor");
         problem.setTitle("Erro interno");
         return problem;
     }
